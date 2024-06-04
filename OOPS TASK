@@ -1,0 +1,102 @@
+1.  how to compare two JSON have the same properties without order?
+        var obj1 = { name: "Person 1", age:5 };
+        var obj2 = { age:5, name: "Person 1" };
+
+// Defines two objects with the same properties, but in different order
+const obj1 = { name: "person 1", age: 5 };
+const obj2 = { age: 5, name: "person 1" };
+
+// Defining a function to compare two objects for equivalent properties
+function compareJSON(obj1, obj2) {
+  // Get the keys of the two objects
+  let obj1Keys = Object.keys(obj1);
+  let obj2Keys = Object.keys(obj2);
+
+  // If the length of the two arrays of keys is not equal, the objects are not the same
+  if (obj1Keys.length !== obj2Keys.length) {
+    return false;
+  }
+
+  // Loop through each property in obj1
+  /**for (let prop in obj1) {
+    // If the value of a property in obj1 does not match the value of the corresponding property in obj2, the objects are not the same
+    if (obj1[prop] !== obj2[prop]) {
+      return false;
+    }
+  }
+
+  // If the loop completes without finding any differences, the objects are the same
+  return true;
+}**/
+
+for (let i = 0; i < obj1Keys.length; i++) {
+    let prop = obj1Keys[0];
+    //console.log(obj2[prop]);
+    if (obj1[prop] !== obj2[prop]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+// Call the compareJSON function with the two objects as arguments
+if (compareJSON(obj1, obj2)) {
+  // If the function returns true, print a message indicating the objects have the same properties
+  console.log("The objects have the same properties.");
+} else {
+  // If the function returns false, print a message indicating the objects do not have the same properties
+  console.log("The objects do not have the same properties.");
+}
+
+
+
+ 2.  use the restcountries API url ->  https://restcountries.eu/rest/v2/all
+    and diplay all the country flags in console
+
+//1st step : create a XHR object
+var request = new XMLHttpRequest();
+//2nd step: API URL
+//.open method
+//2 parameters
+request.open("GET","https://restcountries.com/v2/all");
+//3rd step : establishing the bridge
+request.send();
+//4th step : once the data sucessfully received from server
+//onload is an event
+//when we use :  once the data / server is showing 200 sataus code
+request.onload=function(){
+    var result=JSON.parse(request.response);
+    for(let i = 0 ; i< result.length ; i++){
+        console.log(result[i].flags);   
+
+}
+}
+
+
+//question 3
+//use rest countries api url and print all countries names,regions,subregion and populations
+
+/*
+//1st step : create a XHR object
+var request = new XMLHttpRequest();
+//2nd step: API URL
+//.open method
+//2 parameters
+request.open("GET","https://restcountries.com/v2/all");
+//3rd step : establishing the bridge
+request.send();
+//4th step : once the data sucessfully received from server
+//onload is an event
+//when we use :  once the data / server is showing 200 sataus code
+request.onload=function(){
+    var result=JSON.parse(request.response);
+    for(let i = 0 ; i< result.length ; i++){
+        console.log(result[i].name);
+        console.log(result[i].region);
+        console.log(result[i].subregion); 
+        console.log(result[i].population);    
+
+}
+}
+*
