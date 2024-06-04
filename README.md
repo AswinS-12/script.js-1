@@ -1,2 +1,2 @@
 # script.js-1
-OOPS TASK (day 3)
+ARRAY TASK (day 3)
